@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAIR ATELIER cocomore | 江別・野幌のプライベート美容室</title>
+    <meta name="description" content="北海道江別市野幌の美容室HAIR ATELIER cocomore（ヘアーアトリエ ココモア）。大人女性のためのマンツーマン・プライベートサロン。和漢カラーや泥スパが人気。">
+    
+    <!-- フォント読み込み: Zen Maru Gothic (丸ゴシック) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- 色の定義 (ロゴから抽出した温かい色) --- */
+        :root {
+            --color-sky: #5AB4AC;    /* ロゴの空の色（ターコイズ） */
+            --color-grass: #8CB868;  /* ロゴの大地の色（緑） */
+            --color-sun: #FFD700;    /* 太陽の黄色 */
+            --color-accent: #F4A460; /* 優しいオレンジ */
+            --color-text: #5a4a42;   /* 焦げ茶色の文字 */
+            --color-bg: #fdfbf6;     /* 生成りの紙のような背景 */
+            --font-main: "Zen Maru Gothic", sans-serif;
+        }
+
+        /* --- 基本設定 --- */
+        body {
+            font-family: var(--font-main);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: var(--color-sky);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        a:hover {
+            opacity: 0.7;
+        }
+
+        /* --- コンテナ --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- ヘッダー --- */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 12px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+        }
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .logo-text h1 {
+            margin: 0;
+            font-size: 0.8rem;
+            color: var(--color-sky);
+            line-height: 1.2;
+            text-align: left;
+        }
+        .logo-text span {
+            font-size: 1.4rem;
+            color: var(--color-grass);
+            font-weight: 700;
+        }
+        .header-nav {
+            display: block;
+        }
+
+        
+
+        .header-btn {
+            background-color: var(--color-sun);
+            color: #5a4a42;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            display: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        @media (min-width: 768px) {
+            .header-btn { display: block; }
+            .header-nav { display: block; margin-right: 20px; }
+            .header-nav a { margin: 0 10px; color: var(--color-text); font-size: 0.9rem; font-weight: bold; }
+        }
+
+        /* --- メインビジュアル --- */
+        .hero {
+            background-color: var(--color-sky);
+            padding: 80px 20px 120px; /* 波線のために下を広く */
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;   /* ← これを追加 */
+        }
+        /* 下部の波線装飾 */
+        .hero::after {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            width: 120%;
+            height: 50px;
+            background-color: var(--color-bg);
+            border-radius: 100% 100% 0 0 / 100% 100% 0 0;
+            transform: translateX(-50%);
+}
+
+        .hero-img-frame {
+            background-color: #fff;
+            padding: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            margin-bottom: 25px;
+            width: 220px;
+            height: 220px;
+            position: relative;
+        }
+        /* 画像の周りに少し「太陽」のような飾りをつける */
+        .hero-img-frame::before {
+            content: "";
+            position: absolute;
+            top: -10px; left: -10px; right: -10px; bottom: -10px;
+            border: 2px dashed rgba(255,255,255,0.5);
+            border-radius: 50%;
+            animation: rotate 60s linear infinite;
+        }
+        @keyframes rotate { 100% { transform: rotate(360deg); } }
+
+        .hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .hero-title-area {
+            position: relative;
+            z-index: 2;
+        }
+        .catch-copy {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-shadow: 1px 1px 0 rgba(0,0,0,0.1);
+            margin-top: 10px;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        .sub-copy {
+            font-size: 1rem;
+            opacity: 0.95;
+            display: inline-block;
+            border-bottom: 1px solid rgba(255,255,255,0.6);
+            padding-bottom: 5px;
+        }
+
+        /* --- セクション共通 --- */
+        .section {
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .section-title {
+            display: inline-block;
+            font-size: 1.8rem;
+            color: var(--color-sky);
+            margin-bottom: 50px;
+            position: relative;
+        }
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 4px;
+            border-bottom: 4px dotted var(--color-sun);
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+        }
+        .section-subtitle {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--color-accent);
+            margin-bottom: 5px;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+        }
+
+        /* --- コンセプト（3つのこだわり） --- */
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            text-align: left;
+        }
+        .concept-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.05);
+            border: 2px solid #f0f0f0;
+            transition: transform 0.3s;
+        }
+        .concept-card:hover {
+            transform: translateY(-5px);
+        }
+        .concept-icon {
+            background-color: #eef7f6;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--color-sky);
+            margin-bottom: 20px;
+        }
+        .concept-head {
+            font-size: 1.2rem;
+            color: var(--color-grass);
+            font-weight: bold;
+            margin-bottom: 15px;
+            border-bottom: 2px dashed #eee;
+            padding-bottom: 10px;
+        }
+        .concept-desc {
+            font-size: 0.95rem;
+            color: var(--color-text);
+        }
+
+        /* --- メニュー --- */
+        .menu-section {
+            background-color: #fff;
+            position: relative;
+        }
+        /* 背景に薄い模様を入れるイメージ */
+        .menu-section::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(#e6dfd3 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        .menu-list {
+            max-width: 700px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.95);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 2px solid var(--color-grass);
+            position: relative;
+        }
+        /* 紙を留めるテープ風装飾 */
+        .tape {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 35px;
+            background-color: rgba(255, 215, 0, 0.5);
+            transform: translateX(-50%) rotate(-1deg);
+        }
+
+        .menu-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 1px dashed #ccc;
+            padding: 15px 0;
+        }
+        .menu-row:last-child {
+            border-bottom: none;
+        }
+        .menu-name {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: var(--color-text);
+        }
+        .menu-sub {
+            font-size: 0.8rem;
+            color: #888;
+            margin-left: 10px;
+        }
+        .menu-price {
+            font-weight: bold;
+            color: var(--color-sky);
+            font-size: 1.2rem;
+        }
+        .menu-note {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: #888;
+            text-align: right;
+        }
+
+        /* --- スタイリスト --- */
+        .stylist-area {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+            justify-content: center;
+            text-align: left;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 5px 5px 0 rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+        .stylist-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #fdfbf6;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .stylist-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        .stylist-role {
+            color: var(--color-accent);
+            font-size: 0.9rem;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+        }
+        .stylist-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 5px 0 15px;
+            color: var(--color-grass);
+        }
+        .stylist-tags span {
+            display: inline-block;
+            background: #eef7f6;
+            color: var(--color-sky);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        /* --- インフォメーション --- */
+        .info-section {
+            background-color: #EFF7F6; /* 薄い緑 */
+            position: relative;
+            padding-bottom: 100px;
+        }
+        .info-section::before {
+            content: "";
+            position: absolute;
+            top: -30px; left: 0; width: 100%; height: 30px;
+            background-color: #EFF7F6;
+            border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+        }
+        .info-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        .info-details {
+            flex: 1;
+            min-width: 300px;
+            text-align: left;
+        }
+        .info-item {
+            margin-bottom: 20px;
+        }
+        .info-label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--color-sky);
+            font-weight: bold;
+            margin-bottom: 5px;
+            letter-spacing: 0.05em;
+        }
+        .info-value {
+            font-size: 1.05rem;
+        }
+        .info-access {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dotted #ccc;
+        }
+        .map-box {
+            flex: 1;
+            min-width: 300px;
+            height: 300px;
+            background-color: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 4px solid #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .map-iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* --- フッター --- */
+        footer {
+            background-color: var(--color-grass);
+            color: white;
+            text-align: center;
+            padding: 40px 20px 120px;
+        }
+        .copyright { font-size: 0.8rem; opacity: 0.8; }
+
+        /* --- 固定予約ボタン --- */
+        .floating-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 400px;
+            background-color: var(--color-sun);
+            color: #4a3b32;
+            text-align: center;
+            padding: 15px 0;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 999;
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s, background-color 0.3s;
+            border: 2px solid #fff;
+        }
+        .floating-btn:hover {
+            transform: translateX(-50%) scale(1.02);
+            background-color: #ffd900;
+        }
+        .btn-text-main { font-size: 1.1rem; }
+        .btn-text-sub { font-size: 0.75rem; opacity: 0.9; }
+
+        /* 簡易アニメーション */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ハンバーガーボタン */
+.menu-btn {
+  width: 30px;
+  height: 24px;
+  position: relative;
+  display: block;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+.menu-btn span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--color-grass);
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+.menu-btn span:nth-child(1) { top: 0; }
+.menu-btn span:nth-child(2) { top: 10px; }
+.menu-btn span:nth-child(3) { top: 20px; }
+
+/* PCでは非表示 */
+@media (min-width: 768px) {
+  .menu-btn {
+    display: none;
+  }
+}
+
+/* ナビの初期状態（スマホ） */
+@media (max-width: 767px) {
+  .header-nav {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: white;
+    text-align: center;
+    padding: 20px 0;
+    display: none;
+  }
+
+  .header-nav a {
+    display: block;
+    margin: 15px 0;
+  }
+
+  /* 開いた時 */
+  .header-nav.open {
+    display: block;
+  }
+}
+/* --- ページトップへ戻るボタン --- */
+.back-top-btn {
+  position: fixed;
+  right: 16px;
+  bottom: 90px; /* 予約ボタンより少し上に */
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(90, 74, 66, 0.9); /* 濃いめブラウン */
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 998; /* 予約ボタンより少し下 */
+}
+
+.back-top-btn.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* ちょっとだけふわっと上に出てくる感じ */
+.back-top-btn:not(.show) {
+  transform: translateY(10px);
+}
+
+/* PCでだけ少し位置調整したければ */
+@media (min-width: 768px) {
+  .back-top-btn {
+    bottom: 40px;
+  }
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- ヘッダー -->
+    <header>
+        <div class="header-inner">
+            <div class="logo-text">
+                <span>HAIR ATELIER cocomore</span>
+            </div>
+            <nav class="header-nav">
+                <a href="#concept">CONCEPT</a>
+                <a href="#menu">MENU</a>
+                <a href="#stylist">STYLIST</a>
+                <a href="#access">ACCESS</a>
+            </nav>
+
+            <!-- ハンバーガーボタン（モバイル用） -->
+            <button id="menu-btn" class="menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+  
+            <a href="https://beauty.hotpepper.jp/slnH000491992/" target="_blank" class="header-btn">Web予約</a>
+        </div>
+    </header>
+
+    <!-- メインビジュアル -->
+    <section class="hero">
+        <div class="hero-img-frame">
+            <!-- アップロードされたロゴ画像 -->
+            <img src="images/IMG_5322 2.JPG" 
+                 alt="cocomore ロゴ" 
+                 class="hero-img"
+                 onerror="this.onerror=null; this.src='https://placehold.co/400x400/5AB4AC/FFFFFF?text=cocomore';">
+        </div>
+        <div class="hero-title-area">
+            <p class="sub-copy">HAIR ATELIER cocomore</p>
+            <p class="catch-copy">マンツーマンで叶える、<br>あなただけの「美髪」と「癒やし」の時間。</p>
+        </div>
+    </section>
+
+    <!-- コンセプト -->
+    <section id="concept" class="section">
+        <span class="section-subtitle">Our Concept</span>
+        <h2 class="section-title">3つのこだわり</h2>
+        
+        <div class="container">
+            <div class="concept-grid">
+                <!-- Card 1 -->
+                <div class="concept-card fade-in">
+                    <div class="concept-icon">☺</div>
+                    <div class="concept-head">完全マンツーマン</div>
+                    <p class="concept-desc">
+                        カウンセリングからお仕上げまで、オーナースタイリストが一人で担当。周りを気にせず、髪のお悩みをご相談いただけます。
+                    </p>
+                </div>
+                <!-- Card 2 -->
+                <div class="concept-card fade-in">
+                    <div class="concept-icon">🌿</div>
+                    <div class="concept-head">髪に優しい和漢カラー</div>
+                    <p class="concept-desc">
+                        染めるたびに髪が美しくなる、天然由来の和漢カラーを使用。ダメージが気になる方や、エイジングケアをしたい大人女性に人気です。
+                    </p>
+                </div>
+                <!-- Card 3 -->
+                <div class="concept-card fade-in">
+                    <div class="concept-icon">💧</div>
+                    <div class="concept-head">癒やしの泥スパ</div>
+                    <p class="concept-desc">
+                        頭皮の汚れをすっきり落とし、心身ともにリラックスできる泥スパ。日々の忙しさを忘れ、自分へのご褒美時間を。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- メニュー -->
+    <section id="menu" class="section menu-section">
+        <span class="section-subtitle">Menu & Price</span>
+        <h2 class="section-title">メニュー</h2>
+        
+        <div class="container">
+            <div class="menu-list fade-in">
+                <div class="tape"></div> <!-- テープ装飾 -->
+                
+                <div class="menu-row">
+                    <div>
+                        <span class="menu-name">カット</span>
+                        <span class="menu-sub">S・B込</span>
+                    </div>
+                    <span class="menu-price">¥5,280〜</span>
+                </div>
+                <div class="menu-row">
+                    <div>
+                        <span class="menu-name">和漢カラー + カット</span>
+                    </div>
+                    <span class="menu-price">¥12,980〜</span>
+                </div>
+                <div class="menu-row">
+                    <div>
+                        <span class="menu-name">リタッチカラー</span>
+                    </div>
+                    <span class="menu-price">¥4,400〜</span>
+                </div>
+                <div class="menu-row">
+                    <div>
+                        <span class="menu-name">パーマ + カット</span>
+                    </div>
+                    <span class="menu-price">¥11,880〜</span>
+                </div>
+                <div class="menu-row">
+                    <div>
+                        <span class="menu-name">泥トリートメント＋スパ</span>
+                    </div>
+                    <span class="menu-price">¥3,850~</span>
+                </div>
+
+                <div class="menu-note">
+                    ※価格は全て税込です。ロング料金などは予約サイトをご確認ください。
+                </div>
+                
+                <div style="text-align:center; margin-top:30px;">
+                    <a href="https://beauty.hotpepper.jp/slnH000491992/coupon/" target="_blank" style="border-bottom:1px solid var(--color-sky); font-weight:bold;">
+                        詳しいメニュー・クーポンを見る（Hot Pepper） &rarr;
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- スタイリスト -->
+    <section id="stylist" class="section">
+        <span class="section-subtitle">Stylist</span>
+        <h2 class="section-title">スタイリスト紹介</h2>
+        <div class="container">
+            <div class="stylist-area fade-in">
+                <div class="stylist-img-box">
+                    <!-- スタイリスト写真プレースホルダー（実際はご自身の写真を入れてください） -->
+                    <img src="https://placehold.co/400x400/eef7f6/5AB4AC?text=Stylist" alt="大森 琴美" class="stylist-img">
+                </div>
+                <div class="stylist-info">
+                    <p class="stylist-role">Owner Stylist</p>
+                    <h3 class="stylist-name">大森 琴美</h3>
+                    <div class="stylist-tags">
+                        <span>マンツーマン</span>
+                        <span>ママさん美容師</span>
+                        <span>駐車場あり</span>
+                    </div>
+                    <p style="margin-top:20px; text-align:justify;">
+                        はじめまして。HAIR ATELIER cocomoreの大森です。<br>
+                        当店は、お客様一人ひとりの時間を大切にするプライベートサロンです。くせ毛を活かしたカットや、お悩みに合わせたスタイルの提案が得意です。<br>
+                        大型店が苦手な方や、静かに過ごしたい方、お子様連れの方も、のんびりとお寛ぎください。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 店舗情報 -->
+    <section id="access" class="section info-section">
+        <span class="section-subtitle">Access & Info</span>
+        <h2 class="section-title">店舗情報</h2>
+        
+        <div class="container">
+            <div class="info-container">
+                <div class="info-details fade-in">
+                    <div class="info-item">
+                        <span class="info-label">SALON NAME</span>
+                        <span class="info-value">HAIR ATELIER cocomore<br><span style="font-size:0.8rem;">ヘアーアトリエ ココモア</span></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">ADDRESS</span>
+                        <span class="info-value">
+                            〒069-0813<br>
+                            北海道江別市野幌町79-20<br>
+                            <span style="font-size:0.85rem; color:#666;">（北門信金さん隣のマンション1階）</span>
+                        </span>
+                        <p class="info-access">
+                            JR野幌駅北口徒歩15分 / バス停野幌駅通徒歩2分<br>
+                            国道12号線沿い・野幌郵便局の斜め向かい
+                        </p>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">HOURS</span>
+                        <span class="info-value">9:00～17:00 <span style="font-size:0.8rem;">(カット最終受付16:00)</span></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">CLOSE</span>
+                        <span class="info-value">日曜+不定休</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">PARKING</span>
+                        <span class="info-value">店舗正面にあり</span>
+                    </div>
+                </div>
+                
+                <div class="map-box fade-in">
+                    <!-- Google Maps Embed (江別市野幌町79-20 周辺) -->
+                    <iframe class="map-iframe"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2914.8!2d141.528!3d43.091!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f0b29002f234567%3A0x1234567890abcdef!2z5YyX5rW36YGT5rGf5Yil5biC6YeO5bmM55S677yX77yZ4oiS77yS77yQ!5e0!3m2!1sja!2sjp!4v1620000000000!5m2!1sja!2sjp" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer>
+        <p style="font-weight:bold; font-size:1.2rem; margin-bottom:10px;">HAIR ATELIER cocomore</p>
+        <p class="copyright">&copy; HAIR ATELIER cocomore. All Rights Reserved.</p>
+    </footer>
+
+        <!-- ページトップへ戻るボタン -->
+        <button id="backTopBtn" class="back-top-btn">
+            TOP
+        </button>
+    
+        <!-- 固定予約ボタン -->
+        <a href="https://beauty.hotpepper.jp/slnH000491992/" target="_blank" class="floating-btn">
+            <span class="btn-text-main">空席確認・予約する</span>
+            <span class="btn-text-sub">Hot Pepper Beautyへ移動します</span>
+        </a>
+    
+
+    <!-- 固定予約ボタン -->
+    <a href="https://beauty.hotpepper.jp/slnH000491992/" target="_blank" class="floating-btn">
+        <span class="btn-text-main">空席確認・予約する</span>
+        <span class="btn-text-sub">Hot Pepper Beautyへ移動します</span>
+    </a>
+
+    <script>
+        // ふわっと表示させるアニメーション
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // ハンバーガーメニュー
+        const menuBtn = document.getElementById('menu-btn');
+        const headerNav = document.querySelector('.header-nav');
+
+        menuBtn.addEventListener('click', () => {
+        headerNav.classList.toggle('open');
+        });
+
+        // ページトップへ戻るボタン
+        const backTopBtn = document.getElementById('backTopBtn');
+
+        window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backTopBtn.classList.add('show');
+        } else {
+            backTopBtn.classList.remove('show');
+        }
+        });
+
+        backTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+        });
+
+
+    </script>
+
+</body>
+</html>
